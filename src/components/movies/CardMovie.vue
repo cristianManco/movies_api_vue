@@ -1,66 +1,60 @@
 <template>
-  <div class="card-movie">
-    <h3 class="title-movie">{{ props.title }}</h3>
-
-    <img :src="props.poster" :alt="props.title" />
-
-    <p>
-      <span>Año:</span>
-      {{ props.year }}
-    </p>
-    <p>
-      <span>Tipo:</span>
-      {{ props.type }}
-    </p>
-    <router-link :to="{ name: 'movie-details', params: { id: props.id } }"
-      >Ver Detalles</router-link
-    >
-  </div>
+  <router-link :to="`/movie/${id}`">
+    <div class="card-movie">
+      <img :src="poster || 'src/assets/images/banner-bg.png'" alt="Movie poster" />
+      <h2 class="title-movie">{{ title }}</h2>
+    </div>
+  </router-link>
 </template>
 
-<script setup lang="ts">
-import { defineProps } from 'vue'
-interface IProps {
-  title: string
-  year: string
-  type: string
-  poster: string
-  id: string
+<script>
+export default {
+  props: {
+    id: {
+      type: String,
+      required: true
+    },
+    poster: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    }
+  }
 }
-
-const props = defineProps<IProps>()
 </script>
 
-<style lang="scss" scoped>
-@import '../banner/banner';
+<style scoped lang="scss">
 .card-movie {
   height: 100%;
   width: 300px;
-  background: $secondary;
+  background: gray;
   padding: 10px;
   text-align: center;
-  border: 2px solid $primary;
+  border: 2px solid blue;
   border-radius: 10px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
   .title-movie {
-    color: $white;
+    color: white;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  p {
-    color: $white;
-    span {
-      color: $primary;
-      font-weight: bold;
-    }
-  }
-
   img {
     width: 90%;
     height: 300px;
-    object-fit: scale-down;
+    object-fit: cover;
     border-radius: 10px;
   }
 }

@@ -17,7 +17,7 @@
 import { ref } from 'vue'
 /**Assets imports */
 import headerImg from '@/assets/images/header-img.svg'
-import { useMoviesStore } from '@/stores/counter'
+import { useMoviesStore } from '@/stores/movie'
 
 const imageUrl = ref(headerImg)
 const inputValue = ref<string>('')

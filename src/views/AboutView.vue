@@ -1,5 +1,6 @@
 <template>
   <h1>DETALLES DE LA PELICULA ID {{ movieId }}</h1>
+  <div></div>
 </template>
 
 <script setup lang="ts">
